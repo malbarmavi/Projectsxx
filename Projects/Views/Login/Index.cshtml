@@ -1,0 +1,37 @@
+﻿@model UserLogin
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+<div class="col-md-4"></div>
+
+<div class="col-md-4">
+    @using (var form = Html.BeginForm("Index", "Login"))
+    {
+                <div class="text-danger  box">
+                    @Html.ValidationSummary()
+                </div>
+        <div class="panel panel-default ">
+            <div class="panel-body">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.UserName)
+                    @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Password)
+                    @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="panel-footer ">
+                <input type="submit" name="btnSubmit" value="Login" class="btn btn-primary btn-block" />
+            </div>
+
+        </div>
+    }
+    <div class="text-center">@Html.ActionLink("Sign up ,create new account ...","Index","SignUp") </div>
+</div>
+
+<div class="col-md-4"></div>
+

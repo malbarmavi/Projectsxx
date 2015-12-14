@@ -1,0 +1,87 @@
+﻿@model User
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+
+<div class="col-md-4"></div>
+
+<div class="col-md-4">
+    @using (var form = Html.BeginForm("Register", "Home"))
+    {
+        <div class="text-danger  box">
+            @Html.ValidationSummary()
+        </div>
+        <div class="panel panel-default ">
+            <div class="panel-body">
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.FirstName)
+                    @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.LastName)
+                    @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.UserName)
+                    @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Password)
+                    @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Email)
+                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                </div>
+
+
+            </div>
+            <div class="panel-footer ">
+                <input type="submit" name="btnSubmit" value="Login" class="btn btn-primary btn-block" />
+            </div>
+
+        </div>
+
+        <div ng-app="myApp">
+
+            <div ng-view ></div >   
+        </div>
+    }
+
+    @*<script src="~/Scripts/angular.js"></script>
+    <script src="~/Scripts/angular-route.js"></script>
+    <script>
+        var myApp = angular.module('myApp', ['ngRoute']);
+
+        myApp.config(function ($routeProvider) {
+
+            $routeProvider
+
+            .when('/', {
+                templateUrl: location.origin+ '/Login',
+                controller: 'mainController'
+            })
+          
+        });
+
+        myApp.controller('mainController', ['$scope', '$log', function ($scope, $log) {
+
+            $scope.name = 'Main';
+            $log.log($scope.name);
+        }]);
+
+      
+    </script>*@
+</div>
+
+<div class="col-md-4"></div>
+
+
+
