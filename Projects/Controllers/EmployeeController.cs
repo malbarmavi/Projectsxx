@@ -7,18 +7,20 @@ using Projects.Models;
 
 namespace Projects.Controllers
 {
-    public class EmployeeController : Controller
+    public class EmployeeController : ProjectController
     {
         // GET: Employee
         public ActionResult Index()
         {
-
+            if (!IsLogin()) return RedirectToAction("Index", "Login");
             //list of Em.
             return View(DB.GetUserList());
         }
 
         public ActionResult Add()
         {
+            if (!IsLogin()) return RedirectToAction("Index", "Login");
+
             //Add
             return View();
         }
@@ -48,6 +50,8 @@ namespace Projects.Controllers
         [HttpPost]
         public ActionResult Delete(int id)
         {
+            if (!IsLogin()) return RedirectToAction("Index", "Login");
+
             return RedirectToAction("index");
         }
 

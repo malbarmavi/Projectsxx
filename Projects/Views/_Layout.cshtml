@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-
+@using Helper
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
@@ -14,6 +14,33 @@
 
 </head>
 <body>
+    @if (Session[SessionNames.User] != null && (Session[SessionNames.User] as User).Id != 0)
+    {
+    <nav>
+        <ul>
+            <li>
+                <img src="~/Content/images/nav.png" alt="" />
+            </li>
+            <li>
+                @Html.RouteLink("Dashboard", new { controller = "Dashboard", action = "index" })
+            </li>
+            <li>
+                @Html.RouteLink("Employers", new { controller = "Employee", action = "index" })
+            </li>
+            <li>
+                @Html.RouteLink("Project", new { controller = "Employee", action = "index" })
+            </li>
+            <li>
+                @Html.RouteLink("Tasks", new { controller = "Employee", action = "index" })
+            </li>
+            <li>
+                @Html.RouteLink("Contact", new { controller = "Employee", action = "index" })
+            </li>
+            <li class="pull-right"> <a href="@Url.RouteUrl("LogoOut", new { controller = "Dashboard", action = "LogOff" })" ><i class="fa "></i> </a></li>
+
+        </ul>
+    </nav>
+    }
     <div class="container">
         @RenderBody()
     </div>
@@ -21,7 +48,7 @@
 
     <footer>
 
-        Copy Right @DateTime.Now.Year 
+        Copy Right @DateTime.Now.Year
     </footer>
     <script src="~/Scripts/jquery-2.1.4.min.js"></script>
     <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>

@@ -15,12 +15,9 @@ namespace Projects
         /// </summary>
         /// <returns>False if not login</returns>
 
-        public bool IsLogin()
-        {
-            if (Session[SessionNames.User] == null || (Session[SessionNames.User] as User).Id == 0) return false;
+        public bool IsLogin() => Session[SessionNames.User] != null && (Session[SessionNames.User] as User).Id != 0;
 
-            return true;
-        }
+
 
 
     }

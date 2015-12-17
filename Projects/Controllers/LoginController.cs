@@ -12,14 +12,13 @@ namespace Projects.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-
+            if (IsLogin()) return RedirectToAction("index", "Dashboard");
             return View();
         }
 
         [HttpPost]
         public ActionResult Index(UserLogin loginData)
         {
-            if (IsLogin()) return RedirectToAction("index", "Dashboard");
 
             if (ModelState.IsValid)
             {

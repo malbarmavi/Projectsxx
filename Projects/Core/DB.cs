@@ -42,15 +42,6 @@ namespace Projects
 
 
         }
-        //public static bool CreateCompany()
-        //{
-
-        //    return true;
-        //}
-        //public static int GetCompanyId(string companyName)
-        //{
-        //    return 0;
-        //}
 
         public static User GetUser(UserLogin user)
         {

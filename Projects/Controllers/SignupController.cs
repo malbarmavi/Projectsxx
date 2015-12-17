@@ -18,7 +18,7 @@ namespace Projects.Controllers
         [HttpPost]
         public ActionResult Index(User user)
         {
-            if (IsLogin()) return RedirectToAction("index", "Dashboard");
+            if (!IsLogin()) return RedirectToAction("index", "Dashboard");
             //save to database
             if (ModelState.IsValid)
             {
