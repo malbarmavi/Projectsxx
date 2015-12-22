@@ -1,0 +1,49 @@
+﻿@model Projects.Models.Project
+
+@{
+    ViewBag.Title = "Add";
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+<h2></h2>
+<div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+        @using (var form = Html.BeginForm("Add", "Projects"))
+        {
+            <div class="text-danger  box">
+                @Html.ValidationSummary()
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.DaedLine)
+                        @Html.TextBoxFor(m => m.DaedLine,"{0:yyy/M/dd}", new { @class = "form-control date-picker" })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Name)
+                        @Html.TextBoxFor(m => m.Name, new { @class = "form-control " })
+                    </div>
+                    @*<div class="form-group">
+                        @Html.LabelFor(m => m.Parent)
+                        @Html.DropDownListFor(m => m.Description, new { @class = "form-control " })
+                    </div>*@
+
+
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Description)
+                        @Html.TextAreaFor(m => m.Description , new { @class = "form-control " })
+                    </div>
+
+                </div>
+                <div class="panel-footer">
+                    <input type="submit" name="btnSubmit" value="Add" class="btn btn-primary btn-block" />
+                </div>
+            </div>
+        }
+    </div>
+    <div class="col-md-4"></div>
+
+</div>

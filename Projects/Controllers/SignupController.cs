@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace Projects.Controllers
 {
-    public class SignupController : ProjectController
+    public class SignupController : Projects.AdvancedController
     {
         [HttpGet]
         public ActionResult Index()

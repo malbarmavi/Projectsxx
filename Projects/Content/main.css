@@ -119,3 +119,17 @@ nav {
         opacity:0.8;
         margin-top:2px;
     }
+
+
+.logoff {
+    line-height: 34px;
+    -moz-transform: scale(1.3);
+    -ms-transform: scale(1.3);
+    -o-transform: scale(1.3);
+    -webkit-transform: scale(1.3);
+    transform: scale(1.3);
+}
+
+.display-none { 
+    display:none;
+}

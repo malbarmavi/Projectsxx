@@ -1,0 +1,14 @@
+﻿@model ProjectsList
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+<a class="btn btn-circle" href="@Url.RouteUrl("default", new {controller = "tasks", action= "add" })"><i class="fa fa-pencil"></i></a>
+
+@*@using (var form = Html.BeginForm("index", "tasks"))
+{
+    @Html.DropDownListFor(m => m.SelectedIndex, new SelectList(Model.DataList, "Value", "Text"));       
+
+}*@

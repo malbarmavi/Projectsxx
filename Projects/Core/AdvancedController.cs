@@ -7,7 +7,7 @@ using Projects.Models;
 
 namespace Projects
 {
-    public class ProjectController : Controller
+    public class AdvancedController : Controller
     {
 
         /// <summary>

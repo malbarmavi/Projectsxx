@@ -92,6 +92,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap-chosen.css" />
+    <Content Include="Content\bootstrap-datetimepicker.css" />
+    <Content Include="Content\images\chosen-sprite%402x.png" />
+    <Content Include="Content\images\chosen-sprite.png" />
     <Content Include="Content\images\nav.png" />
     <Content Include="Content\images\gridme.png" />
     <Content Include="Content\images\dash.png" />
@@ -117,6 +121,7 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Scripts\angular-route.js" />
     <Content Include="Scripts\angular.js" />
+    <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Fonts\FontAwesome.otf" />
@@ -125,7 +130,9 @@
     <Content Include="Fonts\fontawesome-webfont.ttf" />
     <Content Include="Fonts\fontawesome-webfont.eot" />
     <Content Include="logo.eps" />
+    <Content Include="ClassDiagram.cd" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
+    <Content Include="Scripts\chosen.jquery.js" />
     <Content Include="Scripts\jquery-2.1.4.js" />
     <Content Include="Scripts\jquery-2.1.4.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
@@ -136,6 +143,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\main.js" />
+    <Content Include="Scripts\moment.js" />
     <Content Include="Web.config" />
     <Content Include="Views\_Layout.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
@@ -146,14 +154,20 @@
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\ProjectsController.cs" />
     <Compile Include="Controllers\SignupController.cs" />
+    <Compile Include="Controllers\TasksController.cs" />
+    <Compile Include="Core\Objects\PriorityState.cs" />
+    <Compile Include="Models\List\UsersList.cs" />
     <Compile Include="Core\DB.cs" />
-    <Compile Include="Core\ProjectController.cs" />
+    <Compile Include="Core\Objects\TaskState.cs" />
+    <Compile Include="Core\AdvancedController.cs" />
     <Compile Include="Core\SessionNames.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Project.cs" />
+    <Compile Include="Models\List\ProjectsList.cs" />
     <Compile Include="Models\Task.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserLogin.cs" />
@@ -168,6 +182,10 @@
     <Content Include="Views\Dashboard\Index.cshtml" />
     <Content Include="Views\Employee\Index.cshtml" />
     <Content Include="Views\Employee\Add.cshtml" />
+    <Content Include="Views\Projects\Index.cshtml" />
+    <Content Include="Views\Projects\Add.cshtml" />
+    <Content Include="Views\Tasks\Index.cshtml" />
+    <Content Include="Views\Tasks\Add.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

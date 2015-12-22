@@ -3,7 +3,7 @@ using Projects.Models;
 
 namespace Projects.Controllers
 {
-    public class HomeController : ProjectController
+    public class HomeController : Projects.AdvancedController
     {
         [HttpGet]
         public ActionResult Index()

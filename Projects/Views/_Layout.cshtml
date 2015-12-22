@@ -6,10 +6,12 @@
     <title>@ViewBag.Title</title>
 
 
-    <link href="~/Content/bootstrap.css" rel="stylesheet" />
-    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
-    <link href="~/Content/main.css" rel="stylesheet" />
-    <link href="~/Content/bootstrap-reset.css" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/bootstrap.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/font-awesome.min.css")" rel="stylesheet" />
+    <link href="~/Content/bootstrap-datetimepicker.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-chosen.css" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/main.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/bootstrap-reset.css")" rel="stylesheet" />
 
 
 </head>
@@ -28,15 +30,15 @@
                 @Html.RouteLink("Employers", new { controller = "Employee", action = "index" })
             </li>
             <li>
-                @Html.RouteLink("Project", new { controller = "Employee", action = "index" })
+                @Html.RouteLink("Projects", new { controller = "Projects", action = "index" })
             </li>
             <li>
-                @Html.RouteLink("Tasks", new { controller = "Employee", action = "index" })
+                @Html.RouteLink("Tasks", new { controller = "Tasks", action = "index" })
             </li>
             <li>
                 @Html.RouteLink("Contact", new { controller = "Employee", action = "index" })
             </li>
-            <li class="pull-right"> <a href="@Url.RouteUrl("LogoOut", new { controller = "Dashboard", action = "LogOff" })" ><i class="fa "></i> </a></li>
+            <li class="pull-right logoff"> <a href="@Url.RouteUrl("Default", new { controller = "Dashboard", action = "Logoff" })" ><i class="fa fa-power-off"></i> </a></li>
 
         </ul>
     </nav>
@@ -54,7 +56,10 @@
     <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script src="~/Scripts/moment.js"></script>
     <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/bootstrap-datetimepicker.min.js"></script>
+    <script src="~/Scripts/chosen.jquery.js"></script>
     <script src="~/Scripts/main.js"></script>
 
 </body>

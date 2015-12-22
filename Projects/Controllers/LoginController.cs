@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace Projects.Controllers
 {
-    public class LoginController : ProjectController
+    public class LoginController : Projects.AdvancedController
     {
         [HttpGet]
         public ActionResult Index()

@@ -7,7 +7,7 @@ using Projects.Models;
 
 namespace Projects.Controllers
 {
-    public class EmployeeController : ProjectController
+    public class EmployeeController : Projects.AdvancedController
     {
         // GET: Employee
         public ActionResult Index()
@@ -27,8 +27,6 @@ namespace Projects.Controllers
         [HttpPost]
         public ActionResult Add(User user)
         {
-
-
             if (ModelState.IsValid)
             {
 
@@ -43,10 +41,9 @@ namespace Projects.Controllers
                 }
 
             }
-
-
             return View(user);
         }
+
         [HttpPost]
         public ActionResult Delete(int id)
         {

@@ -5,6 +5,8 @@ using System.Web;
 using Helper;
 using System.Data;
 using Projects.Models;
+using System.Web.Mvc;
+
 namespace Projects
 {
     public static class DB
@@ -27,7 +29,7 @@ namespace Projects
 
 
             var insertStatement =
-                String.Format(@"INSERT INTO [projects].[dbo].[users] ([user_name] ,[password],[first_name],[last_name] ,[email],[notes]) VALUES (
+                string.Format(@"INSERT INTO [projects].[dbo].[users] ([user_name] ,[password],[first_name],[last_name] ,[email],[notes]) VALUES (
                                 '{0}','{1}','{2}','{3}','{4}','{5}') ", user.UserName, Cryptography.generateMD5(user.Password), user.FirstName, user.LastName, user.Email, user.Notes);
             try
             {
@@ -91,5 +93,40 @@ namespace Projects
             return users;
         }
 
+        public static bool CreateProject(Project projectData)
+        {
+            var insertStatement =
+            string.Format(@"insert into [projects].[dbo].[project]([name],[create_date],[dead_line],[notes],[parent],[user_id],[company_id]) values (
+                                '{0}','{1}','{2}','{3}',{4},{5},{6}) ",
+                                projectData.Name, projectData.CreteDate, projectData.DaedLine, projectData.Description, projectData.Parent, projectData.UserId, 0);
+            try
+            {
+                return DB.ExecuteNonQuery(insertStatement);
+
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
+        }
+
+        public static List<SelectListItem> GetSeletUsersList()
+        {
+            var users = new List<SelectListItem>();
+            DataTable usersData = GetData("SELECT [id],[user_name],[password],[first_name],[last_name],[email],[notes] FROM [dbo].[users]");
+
+            foreach (DataRow row in usersData.Rows)
+            {
+                users.Add(new SelectListItem()
+                {
+                    Text = row["user_name"].ToString(),
+                    Value = row["id"].ToString()
+                }
+                );
+            }
+
+            return users;
+        }
     }
 }

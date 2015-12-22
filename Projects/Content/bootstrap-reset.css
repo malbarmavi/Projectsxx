@@ -72,3 +72,35 @@ textarea {
 	background-color:#5972a7;
     color:#fff;
 }
+
+.btn-circle, .btn-circle:hover, .btn-circle:active {
+    color: #fff;
+    background: #FF5722;
+    border-radius: 100% !important;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    padding: 0;
+    line-height: 39px;
+    font-size: 14pt;
+    border: 1px solid #E91E63;
+    -moz-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    -o-transform: scale(1.2);
+    -webkit-transform: scale(1.2);
+    transform: scale(1.2);
+    text-decoration: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    cursor: pointer;
+    -moz-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    -webkit-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+}
+
+.btn-circle:hover{
+    line-height: 35px;
+
+}

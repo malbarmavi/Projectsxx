@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Projects.RouteConfig">
+    <Position X="13.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>App_Start\RouteConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Projects.DB">
+    <Position X="12" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEQAAAAAAAAAAAEAAIAAAAAgAEAAAAAAAAAA=</HashCode>
+      <FileName>Core\DB.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Projects.ProjectController" Collapsed="true">
+    <Position X="5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Core\ProjectController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Projects.SessionNames">
+    <Position X="17.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Core\SessionNames.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Projects.MvcApplication">
+    <Position X="13.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAA=</HashCode>
+      <FileName>Global.asax.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Projects.Controllers.DashboardController" Collapsed="true">
+    <Position X="5" Y="2" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAQAAAA=</HashCode>
+      <FileName>Controllers\DashboardController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Projects.Controllers.EmployeeController" Collapsed="true">
+    <Position X="7.25" Y="2" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\EmployeeController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Projects.Controllers.HomeController" Collapsed="true">
+    <Position X="0.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\HomeController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Projects.Controllers.LoginController" Collapsed="true">
+    <Position X="2.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\LoginController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Projects.Controllers.ProjectsController">
+    <Position X="13.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\ProjectsController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Projects.Controllers.SignupController" Collapsed="true">
+    <Position X="9.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\SignupController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Projects.Models.Project">
+    <Position X="17.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAQAwAEAAAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Project.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Projects.Models.Task">
+    <Position X="17.25" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAgAAAAAAAAAAQAAAAAAAAAAAABBAAAAAA=</HashCode>
+      <FileName>Models\Task.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Projects.Models.User">
+    <Position X="15.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAiAEAAACAAAAAAAAAAAAAAAAAAAAACAQAAAAAAAAg=</HashCode>
+      <FileName>Models\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Projects.Models.UserLogin">
+    <Position X="15.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAQAAAAAAAAA=</HashCode>
+      <FileName>Models\UserLogin.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="Projects.TaskState">
+    <Position X="12" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAABBAAAAAAAAA=</HashCode>
+      <FileName>Core\Objects\TaskState.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

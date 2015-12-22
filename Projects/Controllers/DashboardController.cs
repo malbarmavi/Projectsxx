@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace Projects.Controllers
 {
-    public class DashboardController : ProjectController
+    public class DashboardController : Projects.AdvancedController
     {
         // GET: Dashboard
         public ActionResult Index()
