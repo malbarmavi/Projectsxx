@@ -5,11 +5,9 @@ using System.Web;
 
 namespace Projects
 {
-    public enum TaskState : int
+    public enum UserRole : int
     {
-        Undecided = 0,
-        Faile = 1,
-        Success = 2
-
+        Admin = 0,
+        Employee = 1
     }
 }

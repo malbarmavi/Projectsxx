@@ -158,6 +158,7 @@
     <Compile Include="Controllers\SignupController.cs" />
     <Compile Include="Controllers\TasksController.cs" />
     <Compile Include="Core\Objects\PriorityState.cs" />
+    <Compile Include="Core\Objects\UserRole.cs" />
     <Compile Include="Models\List\UsersList.cs" />
     <Compile Include="Core\DB.cs" />
     <Compile Include="Core\Objects\TaskState.cs" />

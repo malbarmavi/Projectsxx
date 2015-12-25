@@ -35,8 +35,16 @@ namespace Projects.Controllers
         public ActionResult Add(ProjectTask task)
         {
             if (!IsLogin()) return RedirectToAction("index", "dashboard");
+            if (ModelState.IsValid)
+            {
+                var addState = DB.CreateTask(task);
+                if (addState)
+                {
+                    return RedirectToAction("index");
 
-            return RedirectToAction("index");
+                }
+            }
+            return View(task);
         }
 
     }

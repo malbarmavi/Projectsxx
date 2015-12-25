@@ -24,6 +24,10 @@ namespace Projects.Models
         [EmailAddress]
         [Display(Name = "E-mail")]
         public string Email { get; set; }
+        [Required]
+        [Display(Name = "User Role")]
+        public UserRole Role { get; set; } = UserRole.Admin;
+
         public string Notes { get; set; }
     }
 }

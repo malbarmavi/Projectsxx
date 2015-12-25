@@ -29,8 +29,8 @@ namespace Projects
 
 
             var insertStatement =
-                string.Format(@"INSERT INTO [projects].[dbo].[users] ([user_name] ,[password],[first_name],[last_name] ,[email],[notes]) VALUES (
-                                '{0}','{1}','{2}','{3}','{4}','{5}') ", user.UserName, Cryptography.generateMD5(user.Password), user.FirstName, user.LastName, user.Email, user.Notes);
+                string.Format(@"INSERT INTO [projects].[dbo].[users] ([user_name] ,[password],[first_name],[last_name] ,[email],[notes],role) VALUES (
+                                '{0}','{1}','{2}','{3}','{4}','{5}',{6}) ", user.UserName, Cryptography.generateMD5(user.Password), user.FirstName, user.LastName, user.Email, user.Notes, (int)user.Role);
             try
             {
                 return DB.ExecuteNonQuery(insertStatement);
@@ -75,7 +75,7 @@ namespace Projects
         public static List<User> GetUserList()
         {
             var users = new List<User>();
-            DataTable usersData = GetData("SELECT [id],[user_name],[password],[first_name],[last_name],[email],[notes] FROM [dbo].[users]");
+            DataTable usersData = GetData("SELECT [id],[user_name],[password],[first_name],[last_name],[email],[role],[notes] FROM [dbo].[users]");
 
             foreach (DataRow row in usersData.Rows)
             {
@@ -86,7 +86,9 @@ namespace Projects
                     FirstName = row["first_name"].ToString(),
                     LastName = row["last_name"].ToString(),
                     Email = row["email"].ToString(),
+                    Role = (UserRole)row["role"].ToString().ToInt(),
                     Notes = row["notes"].ToString()
+
                 });
             }
 
@@ -127,6 +129,24 @@ namespace Projects
             }
 
             return users;
+        }
+
+        public static bool CreateTask(ProjectTask task)
+        {
+            var insertStatement =
+            string.Format($@"INSERT INTO [projects].[dbo].[task]([name],[description],[priority],[state],[notes],[project_id]) values (
+                                '{task.Name}','{task.Description}',{(int)task.Priority},{(int)task.State},'{""}',{1}) ");
+
+            try
+            {
+                return ExecuteNonQuery(insertStatement);
+
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
         }
     }
 }
