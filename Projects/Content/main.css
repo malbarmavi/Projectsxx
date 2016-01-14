@@ -133,3 +133,22 @@ nav {
 .display-none { 
     display:none;
 }
+
+thead { 
+    font-weight:bold;
+
+}
+.bold { 
+    font-weight:bold
+}
+
+.relative { 
+    position:relative;
+}
+
+
+.project-expand-btn { 
+    position:absolute;
+    right:0;
+    top:-10px;
+}

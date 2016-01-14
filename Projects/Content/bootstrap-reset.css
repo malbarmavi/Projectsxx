@@ -37,17 +37,15 @@ textarea {
 
 
 .btn-primary,.btn-primary:focus {
-    -moz-box-shadow: inset 0 1px 0 0 #7a8eb9;
-    -webkit-box-shadow: inset 0 1px 0 0 #7a8eb9;
-    box-shadow: inset 0 1px 0 0 #7a8eb9;
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #637aad), color-stop(1, #5972a7));
+
+    /*background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #637aad), color-stop(1, #5972a7));
     background: -moz-linear-gradient(top, #637aad 5%, #5972a7 100%);
     background: -webkit-linear-gradient(top, #637aad 5%, #5972a7 100%);
     background: -o-linear-gradient(top, #637aad 5%, #5972a7 100%);
     background: linear-gradient(to bottom, #637aad 5%, #5972a7 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#637aad', endColorstr='#5972a7',GradientType=0);
-    background-color: #637aad;
-    border: 1px solid #314179;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#637aad', endColorstr='#5972a7',GradientType=0);*/
+    background-color: #046474;
+    border: 1px solid #0D373E;
     display: inline-block;
     cursor: pointer;
     color: #ffffff;
@@ -63,13 +61,13 @@ textarea {
     min-width:100px;
 }
 .btn-primary:hover {
-	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #5972a7), color-stop(1, #637aad));
+	/*background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #5972a7), color-stop(1, #637aad));
 	background:-moz-linear-gradient(top, #5972a7 5%, #637aad 100%);
 	background:-webkit-linear-gradient(top, #5972a7 5%, #637aad 100%);
 	background:-o-linear-gradient(top, #5972a7 5%, #637aad 100%);
 	background:linear-gradient(to bottom, #5972a7 5%, #637aad 100%);
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#5972a7', endColorstr='#637aad',GradientType=0);
-	background-color:#5972a7;
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#5972a7', endColorstr='#637aad',GradientType=0);*/
+	background-color:#057588;
     color:#fff;
 }
 
@@ -90,9 +88,7 @@ textarea {
     -webkit-transform: scale(1.2);
     transform: scale(1.2);
     text-decoration: none;
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
+    
     cursor: pointer;
     -moz-transition: all 0.2s ease-in-out;
     -o-transition: all 0.2s ease-in-out;
@@ -102,5 +98,21 @@ textarea {
 
 .btn-circle:hover{
     line-height: 35px;
+
+}
+
+.btn-fixed { 
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+}
+
+.btn-small ,.btn-small:hover, .btn-small:active{
+  
+    -moz-transform: scale(.8);
+    -ms-transform: scale(.8);
+    -o-transform: scale(.8);
+    -webkit-transform: scale(.8);
+    transform: scale(.8);
 
 }

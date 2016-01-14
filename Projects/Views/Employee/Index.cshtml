@@ -1,6 +1,6 @@
 ﻿@model  List<User>
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Employees";
     Layout = "~/Views/_Layout.cshtml";
 }
 
@@ -22,8 +22,8 @@
                             @foreach (var user in Model)
                             {
                                 <tr>
-                                    <td>
-                                        @Html.RouteLink("Delete", new { controller = "Employee", action = "Delete", id = user.Id })
+                                    <td class="text-center " >
+                                        @Html.RouteLink(" ", new { controller = "Employee", action = "Delete", id = user.Id },new  {@class= "fa fa-times text-danger " })
                                         @*@Html.ActionLink("Delete", "Delete", "Employee", new { id = user.Id })*@
                                     </td>
                                     <td>@user.UserName</td>
