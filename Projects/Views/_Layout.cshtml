@@ -24,21 +24,23 @@
                 <img src="~/Content/images/nav.png" alt="" />
             </li>
             <li>
-                @Html.RouteLink("Dashboard", new { controller = "Dashboard", action = "index" })
+                @Html.RouteLink("Dashboard", new { controller = "Dashboard", action = "index" } , new { @class = "hover" })
             </li>
             <li>
-                @Html.RouteLink("Employers", new { controller = "Employee", action = "index" })
+                @Html.RouteLink("Employees", new { controller = "Employee", action = "index" }, new { @class = "hover" })
             </li>
             <li>
-                @Html.RouteLink("Projects", new { controller = "Projects", action = "index" })
+                @Html.RouteLink("Projects", new { controller = "Projects", action = "index" }, new { @class = "hover" })
             </li>
             <li>
-                @Html.RouteLink("Tasks", new { controller = "Tasks", action = "index" })
+                @Html.RouteLink("Tasks", new { controller = "Tasks", action = "index" }, new { @class = "hover" })
             </li>
             <li>
-                @Html.RouteLink("Contact", new { controller = "Employee", action = "index" })
+                @Html.RouteLink("Contact", new { controller = "Employee", action = "index" }, new { @class = "hover" })
             </li>
-            <li class="pull-right logoff"> <a href="@Url.RouteUrl("Default", new { controller = "Dashboard", action = "Logoff" })" ><i class="fa fa-power-off"></i> </a></li>
+            <li class="pull-right logoff "> <a href="@Url.RouteUrl("Default", new { controller = "Dashboard", action = "Logoff" })"  ><i class="fa fa-power-off"></i> </a></li>
+            <li class="pull-right logoff"><a href="@Url.RouteUrl("Default", new { controller = "Dashboard", action = "Logoff" })" class="relative notify"><i class="notify-number">5</i> <i class="fa fa-globe"></i>    </a></li>
+            <li class="pull-right logoff"><a href="@Url.RouteUrl("Default", new { controller = "Dashboard", action = "Logoff" })" class=""><i class="fa fa-building-o"></i> </a></li>
 
         </ul>
     </nav>
@@ -48,7 +50,7 @@
     </div>
 
 
-    <footer>
+    <footer class="">
 
         Copy Right @DateTime.Now.Year
     </footer>
@@ -62,5 +64,6 @@
     <script src="~/Scripts/chosen.jquery.js"></script>
     <script src="~/Scripts/main.js"></script>
 
+   
 </body>
 </html>

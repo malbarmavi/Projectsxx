@@ -21,7 +21,7 @@ namespace Projects.Controllers
 
             if (!IsLogin()) return RedirectToAction("index", "dashboard");
 
-            return View(new Project() { DaedLine = DateTime.Now });
+            return View(new Project());
         }
         [HttpPost]
         public ActionResult Add(Project project)
@@ -29,7 +29,7 @@ namespace Projects.Controllers
             if (ModelState.IsValid)
             {
                 project.UserId = (Session[SessionNames.User] as User).Id;
-                project.CreteDate = DateTime.Now;
+                //project.CreteDate = DateTime.Now;
                 project.Parent = 0;
                 bool addState = DB.CreateProject(project);
                 if (addState)

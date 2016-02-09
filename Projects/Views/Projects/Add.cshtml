@@ -18,8 +18,12 @@
             <div class="panel panel-default">
                 <div class="panel-body">
                     <div class="form-group">
+                        @Html.LabelFor(m => m.CreteDate)
+                        @Html.TextBoxFor(m => m.CreteDate, "{0:yyy/M/dd}", new { @class = "form-control date-picker" })
+                    </div>
+                    <div class="form-group">
                         @Html.LabelFor(m => m.DaedLine)
-                        @Html.TextBoxFor(m => m.DaedLine,"{0:yyy/M/dd}", new { @class = "form-control date-picker" })
+                        @Html.TextBoxFor(m => m.DaedLine, "{0:yyy/M/dd}", new { @class = "form-control date-picker" })
                     </div>
 
                     <div class="form-group">
@@ -27,14 +31,14 @@
                         @Html.TextBoxFor(m => m.Name, new { @class = "form-control " })
                     </div>
                     @*<div class="form-group">
-                        @Html.LabelFor(m => m.Parent)
-                        @Html.DropDownListFor(m => m.Description, new { @class = "form-control " })
-                    </div>*@
+                            @Html.LabelFor(m => m.Parent)
+                            @Html.DropDownListFor(m => m.Description, new { @class = "form-control " })
+                        </div>*@
 
 
                     <div class="form-group">
                         @Html.LabelFor(m => m.Description)
-                        @Html.TextAreaFor(m => m.Description , new { @class = "form-control " })
+                        @Html.TextAreaFor(m => m.Description, new { @class = "form-control " })
                     </div>
 
                 </div>

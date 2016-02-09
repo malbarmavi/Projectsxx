@@ -24,7 +24,7 @@ namespace Projects.Controllers
         }
 
         [HttpGet]
-        public ActionResult Add()
+        public ActionResult Add(int id)
         {
             if (!IsLogin()) return RedirectToAction("index", "dashboard");
             var projectTask = new ProjectTask();
@@ -32,11 +32,12 @@ namespace Projects.Controllers
         }
 
         [HttpPost]
-        public ActionResult Add(ProjectTask task)
+        public ActionResult Add(int id, ProjectTask task)
         {
             if (!IsLogin()) return RedirectToAction("index", "dashboard");
             if (ModelState.IsValid)
             {
+                task.Project_id = id;
                 var addState = DB.CreateTask(task);
                 if (addState)
                 {

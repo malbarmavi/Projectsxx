@@ -1,6 +1,6 @@
 ﻿@model User
 @{
-    ViewBag.Title = "Register";
+    ViewBag.Title = "Register CEO user";
     Layout = "~/Views/_Layout.cshtml";
 }
 
@@ -8,7 +8,7 @@
 <div class="col-md-4"></div>
 
 <div class="col-md-4">
-    @using (var form = Html.BeginForm("Register", "Home"))
+    @using (var form = Html.BeginForm("index", "signup"))
     {
         <div class="text-danger  box">
             @Html.ValidationSummary()
@@ -44,7 +44,7 @@
 
             </div>
             <div class="panel-footer ">
-                <input type="submit" name="btnSubmit" value="Login" class="btn btn-primary btn-block" />
+                <input type="submit" name="btnSubmit" value="Save" class="btn btn-primary btn-block" />
             </div>
 
         </div>

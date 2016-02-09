@@ -135,11 +135,12 @@ namespace Projects
         {
             var insertStatement =
             string.Format($@"INSERT INTO [projects].[dbo].[task]([name],[description],[priority],[state],[notes],[project_id]) values (
-                                '{task.Name}','{task.Description}',{(int)task.Priority},{(int)task.State},'{""}',{1}) ");
+                                '{task.Name}','{task.Description}',{(int)task.Priority},{(int)task.State},'{""}',{task.Project_id}) ");
 
             try
             {
-                return ExecuteNonQuery(insertStatement);
+                ExecuteNonQuery(insertStatement);
+                return true;
 
             }
             catch (Exception)

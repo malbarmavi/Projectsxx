@@ -7,11 +7,9 @@ namespace Projects
 {
     public enum PriorityState : int
     {
-        Normal = 0,
-        AboveNormal = 1,
-        BelowNormal = 2,
-        High = 4,
-        low = 3
+        low = 0,
+        Normal = 1,
+        High = 2,
 
 
     }

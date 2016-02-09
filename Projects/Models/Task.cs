@@ -21,6 +21,11 @@ namespace Projects.Models
         [Required]
         public int Project_id { get; set; }
         public UsersList Users { get; set; } = new UsersList();
+
+        public ProjectTask()
+        {
+            this.Priority = PriorityState.Normal;
+        }
     }
 
 }
