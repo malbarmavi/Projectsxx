@@ -15,12 +15,12 @@ namespace Projects.Controllers
         {
             if (!IsLogin()) return RedirectToAction("index", "dashboard");
 
-            var task = new ProjectsList();
-            task.DataList.Add(new SelectListItem() { Text = "first", Value = "0" });
-            task.DataList.Add(new SelectListItem() { Text = "secnd", Value = "11" });
-            task.DataList.Add(new SelectListItem() { Text = "third", Value = "12" });
-            task.DataList.Add(new SelectListItem() { Text = "forth", Value = "33" });
-            return View(task);
+            //var task = new ProjectsList();
+            //task.DataList.Add(new SelectListItem() { Text = "first", Value = "0" });
+            //task.DataList.Add(new SelectListItem() { Text = "secnd", Value = "11" });
+            //task.DataList.Add(new SelectListItem() { Text = "third", Value = "12" });
+            //task.DataList.Add(new SelectListItem() { Text = "forth", Value = "33" });
+            return View();
         }
 
         [HttpGet]
@@ -41,7 +41,7 @@ namespace Projects.Controllers
                 var addState = DB.CreateTask(task);
                 if (addState)
                 {
-                    return RedirectToAction("index");
+                    return RedirectToAction("index", "projects");
 
                 }
             }

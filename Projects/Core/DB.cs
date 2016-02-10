@@ -149,5 +149,36 @@ namespace Projects
                 return false;
             }
         }
+
+        public static List<ProjectInfo> GetProjectDashData()
+        {
+            var result = new List<ProjectInfo>();
+            var dt = GetData(@" select id,name,parent
+                                ,(select COUNT(id) from task where project_id = project.id) 'TaskCount' 
+                                ,(select COUNT(id) from task where project_id = project.id and state=0 ) 'Undecided' 
+                                ,(select COUNT(id) from task where project_id = project.id and state=1 ) 'InProcess' 
+                                ,(select COUNT(id) from task where project_id = project.id and state=2 ) 'Faile' 
+                                ,(select COUNT(id) from task where project_id = project.id and state=3 ) 'Success' 
+                                from project");
+
+            //Get row data to list
+            foreach (DataRow data in dt.Rows)
+            {
+                result.Add(new ProjectInfo()
+                {
+                    Id = data["id"].ToString().ToInt(),
+                    Parent = data["parent"].ToString().ToInt(),
+                    Name = data["name"].ToString(),
+                    TaskCount = data["TaskCount"].ToString().ToInt(),
+                    InProcess = data["InProcess"].ToString().ToInt(),
+                    Faile = data["Faile"].ToString().ToInt(),
+                    Success = data["Success"].ToString().ToInt(),
+                    Precent = ((data["Success"].ToString().ToInt() * 100) / data["TaskCount"].ToString().ToInt())
+                });
+            }
+
+            return result;
+        }
+
     }
 }

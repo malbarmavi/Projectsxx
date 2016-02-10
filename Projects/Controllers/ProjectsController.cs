@@ -13,7 +13,9 @@ namespace Projects.Controllers
         public ActionResult Index()
         {
             if (!IsLogin()) return RedirectToAction("index", "dashboard");
-            return View();
+
+
+            return View(DB.GetProjectDashData());
         }
         [HttpGet]
         public ActionResult Add()

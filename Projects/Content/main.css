@@ -107,6 +107,7 @@ nav {
         }
 
     nav ul {
+        padding :0;
     }
 
     nav li {
@@ -157,6 +158,11 @@ thead {
     position:absolute;
     right:0;
     top:-10px;
+}
+.project-task-btn {
+    position: absolute;
+    top: -10px;
+    right: 35px;
 }
 
 .notify{

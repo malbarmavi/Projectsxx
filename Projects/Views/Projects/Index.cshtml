@@ -1,4 +1,4 @@
-﻿
+﻿@model List<ProjectInfo>
 @{
     ViewBag.Title = "Projects";
     Layout = "~/Views/_Layout.cshtml";
@@ -9,20 +9,25 @@
         <a class="btn btn-circle btn-fixed" href="@Url.RouteUrl("default", new {controller = "projects", action= "add" })"><i class="fa fa-file-o"></i></a>
     </div>
 
+    @foreach (ProjectInfo project in Model)
+    {
+
     <div class="col-md-6">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h5 class="bold relative ">
 
-                    Projects Hub
-                    <a class="btn btn-circle btn-small project-expand-btn"><i class="fa fa-expand"></i></a>
+                    @project.Name
+                    <a class="btn btn-circle btn-small project-task-btn"  href="@Url.RouteUrl("default", new {controller = "tasks", action= "add",id= project.Id })"><i class="fa fa-pencil"></i></a>
+
+                   <a class="btn btn-circle btn-small project-expand-btn"><i class="fa fa-expand"></i></a>
 
                 </h5>
             </div>
             <div class="panel-body">
                 <div class="progress">
-                    <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%">
-                        45%
+                    <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width:  @project.Precent%">
+                        @project.Precent %
                     </div>
 
                 </div>
@@ -39,10 +44,10 @@
                         </tr>
 
                         <tr>
-                            <td>12</td>
-                            <td>6</td>
-                            <td class="text-danger">4</td>
-                            <td class="text-success">2</td>
+                            <td>@project.TaskCount</td>
+                            <td>@project.Undecided</td>
+                            <td class="text-danger">@project.Faile</td>
+                            <td class="text-success">@project.Success</td>
                         </tr>
 
                     </table>
@@ -52,92 +57,8 @@
             </div>
         </div>
     </div>
+    }
    
-    <div class="col-md-6">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h5 class="bold relative ">
-
-                    Helper.Net
-                    <a class="btn btn-circle btn-small project-expand-btn"><i class="fa fa-expand"></i></a>
-
-                </h5>
-            </div>
-            <div class="panel-body">
-                <div class="progress">
-                    <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 10%">
-                        10%
-                    </div>
-
-                </div>
-                <div class="table-responsive">
-                    <table class="table table-bordered text-center">
-
-                        <tr class="bold">
-                            <td>
-                                Task No.
-                            </td>
-                            <td>Undecided</td>
-                            <td class="text-danger">Faile</td>
-                            <td class="text-success">Success</td>
-                        </tr>
-
-                        <tr>
-                            <td>12</td>
-                            <td>6</td>
-                            <td class="text-danger">4</td>
-                            <td class="text-success">2</td>
-                        </tr>
-
-                    </table>
-                </div>
-                <div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-6">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h5 class="bold relative ">
-
-                    Projects Hub Report
-                    <a class="btn btn-circle btn-small project-expand-btn"><i class="fa fa-expand"></i></a>
-
-                </h5>
-            </div>
-            <div class="panel-body">
-                <div class="progress">
-                    <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 75%">
-                        75%
-                    </div>
-
-                </div>
-                <div class="table-responsive">
-                    <table class="table table-bordered text-center">
-
-                        <tr class="bold">
-                            <td>
-                                Task No.
-                            </td>
-                            <td>Undecided</td>
-                            <td class="text-danger">Faile</td>
-                            <td class="text-success">Success</td>
-                        </tr>
-
-                        <tr>
-                            <td>12</td>
-                            <td>6</td>
-                            <td class="text-danger">4</td>
-                            <td class="text-success">2</td>
-                        </tr>
-
-                    </table>
-                </div>
-                <div>
-                </div>
-            </div>
-        </div>
-    </div>
+    
 </div>
 
