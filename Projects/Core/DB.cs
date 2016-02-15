@@ -140,6 +140,13 @@ namespace Projects
             try
             {
                 ExecuteNonQuery(insertStatement);
+                var task_id = Helper.DataBase.ExecuteScalar("Select MAX(ID) from dbo.task", connectionStrin).Data;
+
+                foreach (int userId in task.Users.SelectedIndex)
+                {
+                    DB.ExecuteNonQuery($"INSERT INTO [projects].[dbo].[task_users] ([task_id],[user_id])VALUES ({task_id},{userId})");
+                }
+
                 return true;
 
             }
@@ -170,14 +177,81 @@ namespace Projects
                     Parent = data["parent"].ToString().ToInt(),
                     Name = data["name"].ToString(),
                     TaskCount = data["TaskCount"].ToString().ToInt(),
+                    Undecided = data["Undecided"].ToString().ToInt(),
                     InProcess = data["InProcess"].ToString().ToInt(),
                     Faile = data["Faile"].ToString().ToInt(),
                     Success = data["Success"].ToString().ToInt(),
-                    Precent = ((data["Success"].ToString().ToInt() * 100) / data["TaskCount"].ToString().ToInt())
+                    Precent = (data["Success"].ToString().ToInt() == 0) || data["TaskCount"].ToString().ToInt() == 0 ? 0 : ((data["Success"].ToString().ToInt() * 100) / data["TaskCount"].ToString().ToInt())
                 });
             }
 
             return result;
+        }
+
+        public static string GetProjectName(int id, string projectName)
+
+            => id == 0 ? projectName :
+            $"{Helper.DataBase.ExecuteScalar($"Select name from project where id={id} ", connectionStrin).Data.ToString()} - {projectName}";
+
+
+        public static List<TaskInfo> GetTaskInfo(string user_id)
+        {
+            var result = new List<TaskInfo>();
+            var dt = GetData($@"select id,name ,case 
+                when state = 0 then 'Undecided' 
+                when state = 1 then 'InProcess'
+                when state = 2 then 'Faile'
+                when state = 3 then 'Success'
+                end 'state'
+            ,case
+                when priority = 0 then 'low'
+                when priority = 1 then 'normal'
+                when priority = 2 then 'high'
+                end 'priority_text'	 
+                ,(select name from project where project.id = project_id) 'project_name'
+                from task where  id in (select task_id from task_users where user_id = {user_id}) order by project_id");
+
+            foreach (DataRow data in dt.Rows)
+            {
+                result.Add(new TaskInfo()
+                {
+                    Id = data["id"].ToString(),
+                    Name = data["name"].ToString(),
+                    State = data["state"].ToString(),
+                    priority = data["priority_text"].ToString(),
+                    ProjectName = data["project_name"].ToString()
+                });
+            }
+
+            return result;
+        }
+
+
+        public static bool UpdateTask(ProjectTask task)
+        {
+            try
+            {
+                ExecuteNonQuery($@"UPDATE [projects].[dbo].[task] Set state ={(int)task.State} , priority={(int)task.Priority} , description='{task.Description}' where id={task.Id}");
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+
+        public static ProjectTask GetTask(int taskId)
+        {
+            var taskData = GetData($"select [id],[name],[description],[priority],[state],[notes],[project_id] from task where id={taskId}").Rows[0];
+
+            return new ProjectTask()
+            {
+                Name = taskData["name"].ToString(),
+                Priority = (PriorityState)taskData["priority"].ToString().ToInt(),
+                State = (TaskState)taskData["state"].ToString().ToInt(),
+                Description = taskData["description"].ToString()
+            };
         }
 
     }

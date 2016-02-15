@@ -36,7 +36,7 @@
                 @Html.RouteLink("Tasks", new { controller = "Tasks", action = "index" }, new { @class = "hover" })
             </li>
             <li>
-                @Html.RouteLink("Contact", new { controller = "Employee", action = "index" }, new { @class = "hover" })
+                @Html.RouteLink("Contact", new { controller = "contact", action = "index" }, new { @class = "hover" })
             </li>
             <li class="pull-right logoff "> <a href="@Url.RouteUrl("Default", new { controller = "Dashboard", action = "Logoff" })"  ><i class="fa fa-power-off"></i> </a></li>
             <li class="pull-right logoff"><a href="@Url.RouteUrl("Default", new { controller = "Dashboard", action = "Logoff" })" class="relative notify"><i class="notify-number">5</i> <i class="fa fa-globe"></i>    </a></li>

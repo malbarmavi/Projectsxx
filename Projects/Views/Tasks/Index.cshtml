@@ -1,4 +1,4 @@
-﻿
+﻿@model List<TaskInfo>
 
 @{
     ViewBag.Title = "Tasks";
@@ -7,7 +7,39 @@
 
 
 @*@using (var form = Html.BeginForm("index", "tasks"))
-{
-    @Html.DropDownListFor(m => m.SelectedIndex, new SelectList(Model.DataList, "Value", "Text"));       
+    {
+        @Html.DropDownListFor(m => m.SelectedIndex, new SelectList(Model.DataList, "Value", "Text"));
 
-}*@
+    }*@
+
+
+<h2></h2>
+
+
+<div class="row">
+    @foreach (TaskInfo task in Model)
+    {
+        <div class="col-md-4 ">
+            <div class="panel panel-default @task.priority">
+                <div class="panel-heading ">
+                    <h5 class="relative">
+
+                        @task.ProjectName <a class="btn btn-circle btn-small project-task-btn" href="@Url.RouteUrl("default", new {controller = "tasks", action= "update",id= task.Id })"><i class="fa fa-pencil"></i></a>
+                    </h5>
+
+                </div>
+                <div class="panel-body">
+                    <h5>
+                        @String.Concat(task.Name, " - ", task.State)
+                    </h5>
+                </div>
+
+            </div>
+        </div>
+    }
+    
+
+
+
+
+</div>

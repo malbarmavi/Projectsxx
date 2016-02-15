@@ -5,9 +5,9 @@
     Layout = "~/Views/_Layout.cshtml";
 }
 
-<div class="col-md-4"></div>
+<div class="col-md-2"></div>
 
-<div class="col-md-4">
+<div class="col-md-8">
     @using (var form = Html.BeginForm("Add","Employee"))
     {
         <div class="text-danger  box">
@@ -15,36 +15,44 @@
         </div>
         <div class="panel panel-default ">
             <div class="panel-body">
+                <div class="row">
 
-                <div class="form-group">
+                <div class="form-group col-md-6">
                     @Html.LabelFor(m => m.FirstName)
                     @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
                 </div>
 
-                <div class="form-group">
+                <div class="form-group col-md-6">
                     @Html.LabelFor(m => m.LastName)
                     @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
                 </div>
+                </div>
 
-                <div class="form-group">
+                <div class="row">
+
+                <div class="form-group col-md-6">
                     @Html.LabelFor(m => m.UserName)
                     @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
                 </div>
 
-                <div class="form-group">
+                <div class="form-group col-md-6">
                     @Html.LabelFor(m => m.Password)
                     @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
                 </div>
+                </div>
 
-                <div class="form-group">
+                <div class="row">
+
+                <div class="form-group col-md-6">
                     @Html.LabelFor(m => m.Role)
                     @Html.EnumDropDownListFor(m => m.Role , new { @class = "form-control" })
                 </div>
-                <div class="form-group">
+                <div class="form-group col-md-6">
                     @Html.LabelFor(m => m.Email)
                     @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
                 </div>
 
+                </div>
 
             </div>
             <div class="panel-footer ">
@@ -55,7 +63,7 @@
     }
 </div>
 
-<div class="col-md-4"></div>
+<div class="col-md-2"></div>
 
 
 

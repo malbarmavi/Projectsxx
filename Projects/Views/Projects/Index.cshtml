@@ -8,44 +8,44 @@
     <div class="col-lg-12">
         <a class="btn btn-circle btn-fixed" href="@Url.RouteUrl("default", new {controller = "projects", action= "add" })"><i class="fa fa-file-o"></i></a>
     </div>
-
     @foreach (ProjectInfo project in Model)
     {
-
-    <div class="col-md-6">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h5 class="bold relative ">
-
-                    @project.Name
-                    <a class="btn btn-circle btn-small project-task-btn"  href="@Url.RouteUrl("default", new {controller = "tasks", action= "add",id= project.Id })"><i class="fa fa-pencil"></i></a>
-
-                   <a class="btn btn-circle btn-small project-expand-btn"><i class="fa fa-expand"></i></a>
-
-                </h5>
-            </div>
-            <div class="panel-body">
-                <div class="progress">
-                    <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width:  @project.Precent%">
-                        @project.Precent %
-                    </div>
-
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h5 class=" relative ">
+                        @DB.GetProjectName(project.Parent,project.Name)
+                        @if (project.Parent == 0)
+                        {
+                            <a class="btn btn-circle btn-small project-expand-btn" href="@Url.RouteUrl("default", new {controller = "projects", action= "add",id= project.Id })"><i class="fa fa-expand"></i></a>
+                        }
+                        <a class="btn btn-circle btn-small project-task-btn" href="@Url.RouteUrl("default", new {controller = "tasks", action= "add",id= project.Id })"><i class="fa fa-pencil"></i></a>
+                    </h5>
                 </div>
-                <div class="table-responsive">
-                    <table class="table table-bordered text-center">
+                <div class="panel-body">
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width:@project.Precent%">
+                            @project.Precent %
+                        </div>
 
-                        <tr class="bold">
-                            <td>
-                                Task No.
-                            </td>
-                            <td>Undecided</td>
-                            <td class="text-danger">Faile</td>
-                            <td class="text-success">Success</td>
-                        </tr>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-bordered text-center">
 
-                        <tr>
-                            <td>@project.TaskCount</td>
-                            <td>@project.Undecided</td>
+                            <tr class="">
+                                <td>
+                                    Task No.
+                                </td>
+                                <td>Undecided</td>
+                                <td class="text-primary">InProcess</td>
+                                <td class="text-danger">Faile</td>
+                                <td class="text-success">Success</td>
+                            </tr>
+
+                            <tr>
+                                <td>@project.TaskCount</td>
+                                <td>@project.Undecided</td>
+                            <td>@project.InProcess</td>
                             <td class="text-danger">@project.Faile</td>
                             <td class="text-success">@project.Success</td>
                         </tr>
@@ -58,7 +58,7 @@
         </div>
     </div>
     }
-   
-    
+
+
 </div>
 

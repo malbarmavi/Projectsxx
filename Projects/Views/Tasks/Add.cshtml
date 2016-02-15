@@ -6,8 +6,8 @@
 
 <h2></h2>
 <div class="row">
-    <div class="col-md-4"> </div>
-    <div class="col-md-4">
+    <div class="col-md-3"> </div>
+    <div class="col-md-6">
                 @using (var form = Html.BeginForm("add", "tasks"))
                 {
         <div class="text-danger  box">
@@ -16,27 +16,35 @@
         <div class="panel panel-default">
             <div class="panel-body">
 
-
-                    <div class="form-group">
+                <div class="row">
+                    <div class="form-group col-md-6">
                         @Html.LabelFor(m => m.Name)
                         @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
                     </div>
-                    <div class="form-group">
+                    <div class="form-group col-md-6">
                         @Html.LabelFor(m => m.Description)
                         @Html.TextBoxFor(m => m.Description, new { @class = "form-control" })
                     </div>
-                    <div class="form-group">
+                </div>
+
+                <div class="row">
+
+                    <div class="form-group col-md-6">
                         @Html.LabelFor(m => m.State)
                         @Html.EnumDropDownListFor(m=> m.State,new {@class= "form-control display-none"})
                     </div>
-                <div class="form-group">
+                <div class="form-group col-md-6">
                     @Html.LabelFor(m => m.Priority)
                     @Html.EnumDropDownListFor(m => m.Priority, new { @class = "form-control display-none" })
                 </div>
-                    <div class="form-group">
+                </div>
+                <div class="row">
+
+                    <div class="form-group col-md-12">
                        <label>Users</label>
                       @Html.ListBoxFor(m =>m.Users.SelectedIndex ,new MultiSelectList(Model.Users.DataList,"Value","Text"),new {@class= "display-none" })
                     </div>
+                </div>
 
             </div>
             <div class="panel-footer">
@@ -47,5 +55,5 @@
                 }
 
     </div>
-    <div class="col-md-4"> </div>
+    <div class="col-md-3"> </div>
 </div>

@@ -150,6 +150,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -158,6 +159,7 @@
     <Compile Include="Controllers\SignupController.cs" />
     <Compile Include="Controllers\TasksController.cs" />
     <Compile Include="Core\Objects\PriorityState.cs" />
+    <Compile Include="Models\List\TaskInfo.cs" />
     <Compile Include="Core\Objects\UserRole.cs" />
     <Compile Include="Models\List\UsersList.cs" />
     <Compile Include="Core\DB.cs" />
@@ -187,6 +189,8 @@
     <Content Include="Views\Projects\Add.cshtml" />
     <Content Include="Views\Tasks\Index.cshtml" />
     <Content Include="Views\Tasks\Add.cshtml" />
+    <Content Include="Views\Contact\Index.cshtml" />
+    <Content Include="Views\Tasks\Update.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -196,7 +200,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Home\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
