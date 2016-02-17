@@ -83,6 +83,7 @@ footer {
 
 nav {
     background: #18a099;
+    background:#34495E;
     height: 45px;
     color: #fff;
     overflow: hidden;
@@ -141,9 +142,31 @@ nav {
     display:none;
 }
 
-thead { 
+thead , thead td{ 
     font-weight:bold;
+        color: #34495e !important;
+    background: #1abc9c !important;
 
+}
+
+.table-bordered > thead > tr > th, .table-bordered > thead > tr > td {
+     border-bottom-width: 0; 
+}
+
+.table-bordered > thead > tr > th, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > td {
+    border: 0 solid #ddd;
+}
+
+table td {
+    background: #34495e;
+    color: #1abc9c;
+         
+}
+.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td{
+ border-top: 0 solid #ddd;
+}
+table{
+    
 }
 .bold { 
     font-weight:bold
@@ -199,4 +222,18 @@ thead {
 .dev-padding-left span:first-child {
     width:200px;
     display:inline-block;
+}
+
+
+.delete-color , .no-progress { 
+    color:#E74C3C ;
+}
+
+.no-progress{
+padding:10px;
+text-align:center;
+}
+.table-border-radius{
+        border-radius: 6px;
+    overflow: hidden;
 }
