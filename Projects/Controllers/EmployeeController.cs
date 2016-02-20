@@ -13,13 +13,22 @@ namespace Projects.Controllers
         public ActionResult Index()
         {
             if (!IsLogin()) return RedirectToAction("Index", "Login");
-            //list of Em.
-            return View(DB.GetUserList());
+            if (((Models.User)Session[SessionNames.User]).Role == UserRole.Employee)
+            {
+                return RedirectToAction("index", "Dashboard");
+            }
+            else
+            {
+
+                //list of Em.
+                return View(DB.GetUserList());
+            }
         }
 
         public ActionResult Add()
         {
             if (!IsLogin()) return RedirectToAction("Index", "Login");
+            if (((Models.User)Session[SessionNames.User]).Role == UserRole.Employee) return RedirectToAction("index", "Dashboard");
 
             //Add
             return View();
@@ -27,6 +36,7 @@ namespace Projects.Controllers
         [HttpPost]
         public ActionResult Add(User user)
         {
+            if (((Models.User)Session[SessionNames.User]).Role == UserRole.Employee) return RedirectToAction("index", "Dashboard");
             if (ModelState.IsValid)
             {
 
@@ -44,10 +54,13 @@ namespace Projects.Controllers
             return View(user);
         }
 
-        [HttpPost]
+        [HttpGet]
         public ActionResult Delete(int id)
         {
             if (!IsLogin()) return RedirectToAction("Index", "Login");
+            if (((Models.User)Session[SessionNames.User]).Role == UserRole.Employee) return RedirectToAction("index", "Dashboard");
+
+
 
             return RedirectToAction("index");
         }

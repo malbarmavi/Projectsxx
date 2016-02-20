@@ -26,6 +26,7 @@ namespace Projects.Controllers
                 {
                     View(user);
                 }
+                user.CEO = true;
                 bool state = DB.CreateUser(user);
                 if (state == true)
                 {

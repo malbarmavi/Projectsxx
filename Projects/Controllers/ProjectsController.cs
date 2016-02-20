@@ -49,5 +49,12 @@ namespace Projects.Controllers
             }
 
         }
+        [HttpGet]
+        public ActionResult archive(int id)
+        {
+            DB.SetProjectArchive(id);
+            return RedirectToAction("index");
+        }
+
     }
 }

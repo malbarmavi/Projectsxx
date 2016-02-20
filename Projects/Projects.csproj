@@ -96,9 +96,12 @@
     <Content Include="Content\bootstrap-datetimepicker.css" />
     <Content Include="Content\images\chosen-sprite%402x.png" />
     <Content Include="Content\images\chosen-sprite.png" />
+    <Content Include="Content\images\mhd.jpg" />
+    <Content Include="Content\images\mulham.jpg" />
     <Content Include="Content\images\nav.png" />
     <Content Include="Content\images\gridme.png" />
     <Content Include="Content\images\dash.png" />
+    <Content Include="Content\images\waleed.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="Content\bootstrap-reset.css" />
     <Content Include="Content\bootstrap-theme.css" />

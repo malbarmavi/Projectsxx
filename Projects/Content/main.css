@@ -219,7 +219,7 @@ table{
     padding-left:25px;
    
 }
-.dev-padding-left span:first-child {
+.dev-padding-left span.name {
     width:200px;
     display:inline-block;
 }
@@ -236,4 +236,19 @@ text-align:center;
 .table-border-radius{
         border-radius: 6px;
     overflow: hidden;
+}
+
+.developers {
+
+}
+
+.developers img {
+    width:50px;
+    border-radius:50%;
+    height:50px;
+    border:1px solid #ccc;
+    margin-right:25px;
+}
+.archive-project { 
+        padding: 48px 0;
 }

@@ -29,8 +29,8 @@ namespace Projects
 
 
             var insertStatement =
-                string.Format(@"INSERT INTO [projects].[dbo].[users] ([user_name] ,[password],[first_name],[last_name] ,[email],[notes],role) VALUES (
-                                '{0}','{1}','{2}','{3}','{4}','{5}',{6}) ", user.UserName, Cryptography.generateMD5(user.Password), user.FirstName, user.LastName, user.Email, user.Notes, (int)user.Role);
+                string.Format(@"INSERT INTO [projects].[dbo].[users] ([user_name] ,[password],[first_name],[last_name] ,[email],[notes],role,[ceo]) VALUES (
+                                '{0}','{1}','{2}','{3}','{4}','{5}',{6},{7}) ", user.UserName, Cryptography.generateMD5(user.Password), user.FirstName, user.LastName, user.Email, user.Notes, (int)user.Role, user.CEO ? 1 : 0);
             try
             {
                 return DB.ExecuteNonQuery(insertStatement);
@@ -49,7 +49,7 @@ namespace Projects
         {
 
             var result = new User();
-            var queryStatement = String.Format(@"select id,[user_name],[password],first_name,last_name,email,notes from users
+            var queryStatement = String.Format(@"select id,[user_name],[password],first_name,last_name,email,notes,role from users
                                    where [USER_NAME] like '{0}' and [password] like '{1}'", user.UserName, Cryptography.generateMD5(user.Password));
 
             DataTable tbResult = GetData(queryStatement);
@@ -62,6 +62,7 @@ namespace Projects
                 result.LastName = dataResult["last_name"].ToString();
                 result.Email = dataResult["email"].ToString();
                 result.Notes = dataResult["email"].ToString();
+                result.Role = (UserRole)dataResult["role"].ToString().ToInt();
             }
 
             return result;
@@ -75,7 +76,7 @@ namespace Projects
         public static List<User> GetUserList()
         {
             var users = new List<User>();
-            DataTable usersData = GetData("SELECT [id],[user_name],[password],[first_name],[last_name],[email],[role],[notes] FROM [dbo].[users]");
+            DataTable usersData = GetData("SELECT [id],[user_name],[password],[first_name],[last_name],[email],[role],[notes] FROM [dbo].[users] Where ceo=0");
 
             foreach (DataRow row in usersData.Rows)
             {
@@ -166,7 +167,7 @@ namespace Projects
                                 ,(select COUNT(id) from task where project_id = project.id and state=1 ) 'InProcess' 
                                 ,(select COUNT(id) from task where project_id = project.id and state=2 ) 'Faile' 
                                 ,(select COUNT(id) from task where project_id = project.id and state=3 ) 'Success' 
-                                from project");
+                                from project where finish=0");
 
             //Get row data to list
             foreach (DataRow data in dt.Rows)
@@ -189,9 +190,8 @@ namespace Projects
         }
 
         public static string GetProjectName(int id, string projectName)
-
             => id == 0 ? projectName :
-            $"{Helper.DataBase.ExecuteScalar($"Select name from project where id={id} ", connectionStrin).Data.ToString()} - {projectName}";
+            $"{DataBase.ExecuteScalar($"Select name from project where id={id} ", connectionStrin).Data.ToString()} - {projectName}";
 
 
         public static List<TaskInfo> GetTaskInfo(string user_id)
@@ -209,7 +209,7 @@ namespace Projects
                 when priority = 2 then 'high'
                 end 'priority_text'	 
                 ,(select name from project where project.id = project_id) 'project_name'
-                from task where  id in (select task_id from task_users where user_id = {user_id}) order by project_id");
+                from task where  project_id in (  select id from project where project.finish = 0) and id in (select task_id from task_users where user_id = {user_id}  ) order by project_id");
 
             foreach (DataRow data in dt.Rows)
             {
@@ -253,6 +253,10 @@ namespace Projects
                 Description = taskData["description"].ToString()
             };
         }
+
+        public static bool SetProjectArchive(int id)
+            => ExecuteNonQuery($"update project set finish=1 where id = {id}");
+
 
     }
 }

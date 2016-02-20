@@ -26,8 +26,9 @@ namespace Projects.Models
         public string Email { get; set; }
         [Required]
         [Display(Name = "User Role")]
-        public UserRole Role { get; set; } = UserRole.Admin;
+        public UserRole Role { get; set; }
 
+        public bool CEO { get; set; } = false;
         public string Notes { get; set; }
     }
 }

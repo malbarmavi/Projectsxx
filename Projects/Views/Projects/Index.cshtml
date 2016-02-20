@@ -22,8 +22,8 @@
                         <a class="btn btn-circle btn-small project-task-btn" href="@Url.RouteUrl("default", new {controller = "tasks", action= "add",id= project.Id })"><i class="fa fa-pencil"></i></a>
                     </h5>
                 </div>
-                <div class="panel-body">
-                    @if (project.Precent > 0)
+                <div class="panel-body text-center @(project.Precent ==100 ?"archive-project":"")">
+                    @if (project.Precent > 0 && project.Precent  < 100)
                     {
 
                         <div class="progress">
@@ -33,11 +33,17 @@
 
                         </div>
                     }
+                    else if (project.Precent == 100)
+                    {
+                        <h5 class="text-success">The prject has success with all tasks.</h5>
+                        <a class="btn btn-success "  href="@Url.RouteUrl("default", new {controller = "projects", action= "archive",id= project.Id })"><i class="fa fa-check"></i> Archive</a>
+
+                    }
                     else
                     {
-                        <div class="no-progress">There is no progress until you add tasks.</div>
+                        <div class="no-progress">There is no progress until one tas has success.</div>
                     }
-                    <div class="table-responsive">
+                    <div class="table-responsive @(project.Precent ==100 ?"display-none":"") ">
                         <table class="table table-bordered table-border-radius text-center">
 
                             <thead class="">
