@@ -29,11 +29,12 @@ namespace Projects
 
 
             var insertStatement =
-                string.Format(@"INSERT INTO [projects].[dbo].[users] ([user_name] ,[password],[first_name],[last_name] ,[email],[notes],role,[ceo]) VALUES (
-                                '{0}','{1}','{2}','{3}','{4}','{5}',{6},{7}) ", user.UserName, Cryptography.generateMD5(user.Password), user.FirstName, user.LastName, user.Email, user.Notes, (int)user.Role, user.CEO ? 1 : 0);
+                string.Format(@"INSERT INTO [projects].[dbo].[users] ([user_name] ,[password],[first_name],[last_name] ,[email],[notes],role,[ceo],company_id) VALUES (
+                                '{0}','{1}','{2}','{3}','{4}','{5}',{6},{7},{8}) ", user.UserName, Cryptography.generateMD5(user.Password), user.FirstName, user.LastName, user.Email, user.Notes, (int)user.Role, user.CEO ? 1 : 0, user.CompanyId);
             try
             {
                 return DB.ExecuteNonQuery(insertStatement);
+
 
             }
             catch (Exception)
@@ -45,11 +46,12 @@ namespace Projects
 
         }
 
+
         public static User GetUser(UserLogin user)
         {
 
             var result = new User();
-            var queryStatement = String.Format(@"select id,[user_name],[password],first_name,last_name,email,notes,role from users
+            var queryStatement = String.Format(@"select id,[user_name],[password],first_name,last_name,email,notes,role,ceo,company_id from users
                                    where [USER_NAME] like '{0}' and [password] like '{1}'", user.UserName, Cryptography.generateMD5(user.Password));
 
             DataTable tbResult = GetData(queryStatement);
@@ -63,6 +65,8 @@ namespace Projects
                 result.Email = dataResult["email"].ToString();
                 result.Notes = dataResult["email"].ToString();
                 result.Role = (UserRole)dataResult["role"].ToString().ToInt();
+                result.CEO = Convert.ToBoolean(dataResult["ceo"].ToString());
+                result.CompanyId = dataResult["company_id"].ToString().ToInt();
             }
 
             return result;
@@ -73,10 +77,10 @@ namespace Projects
             return GetData(String.Format("select id from users where [user_name] like '{0}'", userName)).Rows.Count > 0 ? true : false;
         }
 
-        public static List<User> GetUserList()
+        public static List<User> GetUserList(int companyId)
         {
             var users = new List<User>();
-            DataTable usersData = GetData("SELECT [id],[user_name],[password],[first_name],[last_name],[email],[role],[notes] FROM [dbo].[users] Where ceo=0");
+            DataTable usersData = GetData("SELECT [id],[user_name],[password],[first_name],[last_name],[email],[role],[notes] FROM [dbo].[users] Where ceo=0 and company_id=" + companyId.ToString());
 
             foreach (DataRow row in usersData.Rows)
             {
@@ -101,7 +105,7 @@ namespace Projects
             var insertStatement =
             string.Format(@"insert into [projects].[dbo].[project]([name],[create_date],[dead_line],[notes],[parent],[user_id],[company_id]) values (
                                 '{0}','{1}','{2}','{3}',{4},{5},{6}) ",
-                                projectData.Name, projectData.CreteDate, projectData.DaedLine, projectData.Description, projectData.Parent, projectData.UserId, 0);
+                                projectData.Name, projectData.CreteDate, projectData.DaedLine, projectData.Description, projectData.Parent, projectData.UserId, projectData.CompanyId);
             try
             {
                 return DB.ExecuteNonQuery(insertStatement);
@@ -158,16 +162,16 @@ namespace Projects
             }
         }
 
-        public static List<ProjectInfo> GetProjectDashData()
+        public static List<ProjectInfo> GetProjectDashData(int companyId)
         {
             var result = new List<ProjectInfo>();
-            var dt = GetData(@" select id,name,parent
+            var dt = GetData($@" select id,name,parent
                                 ,(select COUNT(id) from task where project_id = project.id) 'TaskCount' 
                                 ,(select COUNT(id) from task where project_id = project.id and state=0 ) 'Undecided' 
                                 ,(select COUNT(id) from task where project_id = project.id and state=1 ) 'InProcess' 
                                 ,(select COUNT(id) from task where project_id = project.id and state=2 ) 'Faile' 
                                 ,(select COUNT(id) from task where project_id = project.id and state=3 ) 'Success' 
-                                from project where finish=0");
+                                from project where archive=0 and company_id ={companyId}");
 
             //Get row data to list
             foreach (DataRow data in dt.Rows)
@@ -190,8 +194,7 @@ namespace Projects
         }
 
         public static string GetProjectName(int id, string projectName)
-            => id == 0 ? projectName :
-            $"{DataBase.ExecuteScalar($"Select name from project where id={id} ", connectionStrin).Data.ToString()} - {projectName}";
+            => id == 0 ? projectName : $"{DataBase.ExecuteScalar($"Select name from project where id={id} ", connectionStrin).Data.ToString()} - {projectName}";
 
 
         public static List<TaskInfo> GetTaskInfo(string user_id)
@@ -209,7 +212,7 @@ namespace Projects
                 when priority = 2 then 'high'
                 end 'priority_text'	 
                 ,(select name from project where project.id = project_id) 'project_name'
-                from task where  project_id in (  select id from project where project.finish = 0) and id in (select task_id from task_users where user_id = {user_id}  ) order by project_id");
+                from task where  project_id in (  select id from project where project.archive = 0) and id in (select task_id from task_users where user_id = {user_id}  ) order by project_id");
 
             foreach (DataRow data in dt.Rows)
             {
@@ -255,7 +258,36 @@ namespace Projects
         }
 
         public static bool SetProjectArchive(int id)
-            => ExecuteNonQuery($"update project set finish=1 where id = {id}");
+            => ExecuteNonQuery($"update project set archive=1 where id = {id}");
+        public static bool CreateCeoUser(UserSignup user)
+        {
+            try
+            {
+                bool insertNewCpmpany = CreateCompany(user.CompanyName, user.CompanyType);
+                int companyId = DataBase.ExecuteScalar("select IDENT_CURRENT('company') 'id'", connectionStrin).Data.ToString().ToInt();
+                user.CompanyId = companyId;
+                bool insertNewUser = CreateUser(user);
+                return insertNewUser && insertNewCpmpany;
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
+        }
+        public static bool CreateCompany(string name, string type)
+        {
+            try
+            {
+                return ExecuteNonQuery($"insert into company (name,[type]) values ('{name}','{type}')");
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
+        }
+
 
 
     }

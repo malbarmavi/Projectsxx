@@ -21,7 +21,7 @@ namespace Projects.Controllers
             {
 
                 //list of Em.
-                return View(DB.GetUserList());
+                return View(DB.GetUserList(((Models.User)Session[SessionNames.User]).CompanyId));
             }
         }
 
@@ -44,6 +44,7 @@ namespace Projects.Controllers
                 {
                     View(user);
                 }
+                user.CompanyId = ((Models.User)Session[SessionNames.User]).CompanyId;
                 bool state = DB.CreateUser(user);
                 if (state == true)
                 {

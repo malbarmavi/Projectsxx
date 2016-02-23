@@ -27,8 +27,8 @@ namespace Projects.Models
         [Required]
         [Display(Name = "User Role")]
         public UserRole Role { get; set; }
-
         public bool CEO { get; set; } = false;
+        public int CompanyId { get; set; }
         public string Notes { get; set; }
     }
 }

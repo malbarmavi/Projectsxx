@@ -15,7 +15,7 @@ namespace Projects.Controllers
             if (!IsLogin()) return RedirectToAction("index", "dashboard");
 
 
-            return View(DB.GetProjectDashData());
+            return View(DB.GetProjectDashData((Session[SessionNames.User] as Models.User).CompanyId));
         }
         [HttpGet]
         public ActionResult Add(int id = 0)
@@ -33,6 +33,7 @@ namespace Projects.Controllers
                 project.UserId = (Session[SessionNames.User] as User).Id;
                 //project.CreteDate = DateTime.Now;
                 project.Parent = id;
+                project.CompanyId = (Session[SessionNames.User] as User).CompanyId;
                 bool addState = DB.CreateProject(project);
                 if (addState)
                 {

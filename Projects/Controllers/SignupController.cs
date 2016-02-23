@@ -16,7 +16,7 @@ namespace Projects.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(User user)
+        public ActionResult Index(UserSignup user)
         {
             if (IsLogin()) return RedirectToAction("index", "Dashboard");
             //save to database
@@ -27,7 +27,7 @@ namespace Projects.Controllers
                     View(user);
                 }
                 user.CEO = true;
-                bool state = DB.CreateUser(user);
+                bool state = DB.CreateCeoUser(user);
                 if (state == true)
                 {
                     return RedirectToAction("index", "Login");
