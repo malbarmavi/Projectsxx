@@ -46,7 +46,6 @@ namespace Projects
 
         }
 
-
         public static User GetUser(UserLogin user)
         {
 
@@ -287,8 +286,40 @@ namespace Projects
                 return false;
             }
         }
+        public static Company GetCompany(int companyId)
+        {
+            var companyData =
+                GetData($@"SELECT [id],[name],[address],[type],[about],[facebook_url],[twitter_url],[website_url],[phone_number] 
+                           FROM [projects].[dbo].[company] where id ={companyId}").Rows[0];
+
+            return new Company()
+            {
+                Id = companyData["id"].ToString().ToInt(),
+                Name = companyData["name"].ToString(),
+                Type = companyData["type"].ToString(),
+                About = companyData["about"].ToString(),
+                FacebookUrl = companyData["facebook_url"].ToString(),
+                TwitterUrl = companyData["twitter_url"].ToString(),
+                WebsiteUrl = companyData["website_url"].ToString(),
+                PhoneNumber = companyData["phone_number"].ToString(),
+                Address = companyData["address"].ToString()
+            };
+        }
 
 
+        public static bool UpdateCompany(Company company)
+        {
+            return DB.ExecuteNonQuery($@"UPDATE [projects].[dbo].[company]
+                                       SET [name] = '{company.Name}'
+                                          ,[address] = '{company.Address}'
+                                          ,[type] = '{company.Type}'
+                                          ,[about] = '{company.About}'
+                                          ,[facebook_url] = '{company.FacebookUrl}'
+                                          ,[twitter_url] = '{company.TwitterUrl}'
+                                          ,[website_url] = '{company.WebsiteUrl}'
+                                          ,[phone_number] = '{company.PhoneNumber}'
+                                     WHERE id={company.Id}");
+        }
 
     }
 }

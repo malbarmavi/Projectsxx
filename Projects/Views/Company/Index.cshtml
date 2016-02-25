@@ -1,0 +1,64 @@
+﻿@model Company
+@{
+    ViewBag.Title = "Company";
+    Layout = "~/Views/_Layout.cshtml";
+}
+<h2></h2>
+
+
+<div class="row">
+
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+
+        <div class="panel panel-default">
+
+            <div class="panel-body">
+                <h4>@Model.Name</h4>
+                <h5>
+                    <label>Type : </label>
+                    @Model.Type
+                </h5>
+                <h5>
+                    <label>Address :</label>
+                    @Model.Address
+                </h5>
+                <h5>
+                    <label>About : </label>
+                    @Model.About
+                </h5>
+                <h5>
+                    <label>Phone : </label>
+                    @Model.PhoneNumber
+                </h5>
+                <h5>
+                    @if (Model.WebsiteUrl.Trim().Length > 0)
+                    {
+                        <a class="btn btn-default" href="@Model.WebsiteUrl" target="_blank"><i class="fa fa-globe"></i></a>
+                    }
+
+                    @if (Model.FacebookUrl.Trim().Length > 0)
+                    {
+                        <a class="btn btn-default" href="@Model.FacebookUrl" target="_blank"><i class="fa fa-facebook"></i></a>
+                    }
+                    @if (Model.TwitterUrl.Trim().Length > 0)
+                    {
+                        <a class="btn btn-default" href="@Model.TwitterUrl" target="_blank"><i class="fa fa-twitter"></i></a>
+                    }
+                </h5>
+            </div>
+
+            @if ((Session[SessionNames.User] as User).Role == UserRole.Admin)
+            {
+                <div class="panel-footer text-center" >
+                    <a class="btn btn-default" href="@Url.RouteUrl("Default", new { controller = "Company", action = "Edit" })" >Edit</a>
+                </div>
+            }
+        </div>
+
+
+
+    </div>
+    <div class="col-md-2"></div>
+
+</div>

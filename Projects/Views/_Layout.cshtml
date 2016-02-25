@@ -36,6 +36,9 @@
             <li>
                 @Html.RouteLink("Projects", new { controller = "Projects", action = "index" }, new { @class = "hover" })
             </li>
+            <li>
+                @Html.RouteLink("Report", new { controller = "Projects", action = "index" }, new { @class = "hover" })
+            </li>
             }
             
           
@@ -49,7 +52,7 @@
             <li class="pull-right logoff"><a href="@Url.RouteUrl("Default", new { controller = "Dashboard", action = "Logoff" })" class="relative notify"><i class="notify-number">5</i> <i class="fa fa-globe"></i>    </a></li>
         @if (((Projects.Models.User)Session[SessionNames.User]).Role == UserRole.Admin)
         {
-            <li class="pull-right logoff"><a href="@Url.RouteUrl("Default", new { controller = "Dashboard", action = "Logoff" })" class=""><i class="fa fa-building-o"></i> </a></li>
+            <li class="pull-right logoff"><a href="@Url.RouteUrl("Default", new { controller = "Company", action = "index" })" class=""><i class="fa fa-building-o"></i> </a></li>
         }
         </ul>
 
