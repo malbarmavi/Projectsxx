@@ -1,0 +1,53 @@
+﻿@model DataTable
+@{
+    ViewBag.Title = "Users List";
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+<h2></h2>
+<div class="row">
+    <div class="col-lg-12 col-md-12">
+        <div class="table-responsive">
+            <table class="table table-border-radius colorfull">
+                <thead>
+                    <tr>
+                        <td>UserName</td>
+                        <td>First Name</td>
+                        <td>Last Name</td>
+                        <td>email</td>
+                        <td>Role</td>
+                        <td>CEO</td>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (DataRow projectData in Model.Rows)
+                    {
+                        <tr>
+                            <td>
+                                @projectData["user_name"].ToString()
+                            </td>
+                            <td>
+                                @projectData["first_name"].ToString()
+                            </td>
+                            <td>
+                                @projectData["last_name"].ToString()
+                            </td>
+                            <td>
+                                @projectData["email"].ToString()
+                            </td>
+                            <td>
+                                @(projectData["role"].ToString().ToInt() ==0 ? "Adminstrater" :"Employee")
+                            </td>
+                            <td>
+                                @(projectData["ceo"].ToString().AsBool() ? "Yes" :"No")
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+
+    </div>
+</div>

@@ -1,0 +1,58 @@
+﻿@using System.Data
+@model System.Data.DataTable
+@{
+    ViewBag.Title = "Archive Project";
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+<h2></h2>
+
+<div class="row">
+    <div class="col-lg-12 col-md-12">
+        <div class="table-responsive">
+            <table class="table table-border-radius colorfull">
+                <thead>
+                    <tr>
+                        <td>Name</td>
+                        <td>Type</td>
+                        <td>Start Date</td>
+                        <td>Dead Line</td>
+                        <td>Task Count</td>
+                        <td>User Count</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (DataRow projectData in Model.Rows)
+                    {
+                        <tr>
+                            <td>
+                                @projectData["name"].ToString()
+                            </td>
+                            <td>
+                                @projectData["Type"].ToString()
+                            </td>
+                            <td>
+                                @Convert.ToDateTime(projectData["create_date"].ToString()).ToString("yyyy/MM/dd")
+                            </td>
+                            <td>
+                                @Convert.ToDateTime(projectData["dead_line"].ToString()).ToString("yyyy/MM/dd")
+                            </td>
+                            <td>
+                                @projectData["task_count"].ToString()
+                            </td>
+                            <td>
+                                @projectData["user_count"].ToString()
+                            </td>
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+
+    </div>
+</div>
+
+
+

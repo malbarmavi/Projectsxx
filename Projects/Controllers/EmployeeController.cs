@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using Projects.Models;
 using System.Web.Mvc;
-using Projects.Models;
 
 namespace Projects.Controllers
 {
@@ -61,7 +57,7 @@ namespace Projects.Controllers
             if (!IsLogin()) return RedirectToAction("Index", "Login");
             if (((Models.User)Session[SessionNames.User]).Role == UserRole.Employee) return RedirectToAction("index", "Dashboard");
 
-
+            DB.DeleteUser(id);
 
             return RedirectToAction("index");
         }

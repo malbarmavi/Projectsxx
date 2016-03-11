@@ -15,6 +15,7 @@
                 <div class="panel-heading">
                     <h5 class=" relative ">
                         @DB.GetProjectName(project.Parent, project.Name)
+                        <a class="btn btn-circle btn-small project-delete-btn" href="@Url.RouteUrl("default", new {controller = "projects", action= "delete",id= project.Id })"><i class="fa fa-trash"></i></a>
                         @if (project.Parent == 0)
                         {
                             <a class="btn btn-circle btn-small project-expand-btn" href="@Url.RouteUrl("default", new {controller = "projects", action= "add",id= project.Id })"><i class="fa fa-expand"></i></a>
@@ -22,29 +23,38 @@
                         <a class="btn btn-circle btn-small project-task-btn" href="@Url.RouteUrl("default", new {controller = "tasks", action= "add",id= project.Id })"><i class="fa fa-pencil"></i></a>
                     </h5>
                 </div>
-                <div class="panel-body text-center @(project.Precent ==100 ?"archive-project":"")">
-                    @if (project.Precent > 0 && project.Precent  < 100)
+                <div class="panel-body text-center @(project.Precent ==100 || project.DaedLine < DateTime.Now ?"archive-project":"")">
+                    @if (project.DaedLine < DateTime.Now)
                     {
-
-                        <div class="progress">
-                            <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width:@project.Precent%">
-                                @project.Precent %
-                            </div>
-
-                        </div>
-                    }
-                    else if (project.Precent == 100)
-                    {
-                        <h5 class="text-success">The prject has success with all tasks.</h5>
-                        <a class="btn btn-success "  href="@Url.RouteUrl("default", new {controller = "projects", action= "archive",id= project.Id })"><i class="fa fa-check"></i> Archive</a>
-
+                        <h5 class="text-danger">The project has pass the dead line.</h5>
+                        <a class="btn btn-danger " href="@Url.RouteUrl("default", new {controller = "projects", action= "archive",id= project.Id })"><i class="fa fa-check"></i> Archive</a>
                     }
                     else
                     {
-                        <div class="no-progress">There is no progress until one tas has success.</div>
+
+                        if (project.Precent > 0 && project.Precent < 100)
+                        {
+
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width:@project.Precent%">
+                            @project.Precent %
+                        </div>
+
+                    </div>
                     }
-                    <div class="table-responsive @(project.Precent ==100 ?"display-none":"") ">
-                        <table class="table table-bordered table-border-radius text-center">
+                    else if (project.Precent == 100)
+                    {
+                    <h5 class="text-success">The project has success with all tasks.</h5>
+                    <a class="btn btn-success " href="@Url.RouteUrl("default", new {controller = "projects", action= "archive",id= project.Id })"><i class="fa fa-check"></i> Archive</a>
+                    }
+                    else
+                    {
+                    <div class="no-progress">There is no progress until one tas has success.</div>
+                        }
+                    }
+
+                    <div class="table-responsive @(project.Precent ==100 || project.DaedLine < DateTime.Now ?"display-none":"") ">
+                        <table class="table table-bordered table-border-radius text-center colorfull">
 
                             <thead class="">
                                 <tr>

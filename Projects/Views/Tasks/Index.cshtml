@@ -1,25 +1,29 @@
-﻿@model List<TaskInfo>
+﻿@model List<TasksCollection>
 
 @{
     ViewBag.Title = "Tasks";
     Layout = "~/Views/_Layout.cshtml";
 }
 
-
-@*@using (var form = Html.BeginForm("index", "tasks"))
-    {
-        @Html.DropDownListFor(m => m.SelectedIndex, new SelectList(Model.DataList, "Value", "Text"));
-
-    }*@
-
-
 <h2></h2>
 
 
 <div class="row">
-    @foreach (TaskInfo task in Model)
+    <div class="col-md-12 bold small text-left">
+
+        <span class="info-box all-task">All</span>
+        <span class="info-box low-task">Low</span>
+        <span class="info-box normal-task">Normal</span>
+        <span class="info-box high-task">High</span>
+    </div>
+    <div class="col-md-12"><h1></h1></div>
+
+    @foreach (TasksCollection t in Model)
     {
-        <div class="col-md-4 ">
+        @*<div class="col-md-12"><h1></h1></div>*@
+    foreach (TaskInfo task in t.TasksList)
+    {
+        <div class="task-panel col-md-4  @task.priority">
             <div class="panel panel-default @task.priority">
                 <div class="panel-heading ">
                     <h5 class="relative">
@@ -36,9 +40,10 @@
 
             </div>
         </div>
-    }
-    
+        }
 
+
+    }
 
 
 

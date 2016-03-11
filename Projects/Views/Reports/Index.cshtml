@@ -1,0 +1,19 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+<h2></h2>
+
+<div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+        @Html.RouteLink("All Projects", new { controller = "Reports", action = "AllProjects" }, new { @class = "btn btn-default btn-block" })
+        @Html.RouteLink("Archive Projects", new { controller = "Reports", action = "ArchiveProjects" }, new { @class = "btn btn-default btn-block" })
+        @Html.RouteLink("Fail Projects", new { controller = "Reports", action = "FailProjects" }, new { @class = "btn btn-default btn-block" })
+        @Html.RouteLink("User List", new { controller = "Reports", action = "UsersList" }, new { @class = "btn btn-default btn-block" })
+    </div>
+    <div class="col-md-4"></div>
+</div>
+

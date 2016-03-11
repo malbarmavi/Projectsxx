@@ -26,30 +26,40 @@
                 <img src="~/Content/images/nav.png" alt="" />
             </li>
             <li>
-                @Html.RouteLink("Dashboard", new { controller = "Dashboard", action = "index" }, new { @class = "hover" })
-            </li>
+                <ul class="menu">
+
+                    <li>
+                        @Html.RouteLink("Dashboard", new { controller = "Dashboard", action = "index" }, new { @class = "hover" })
+                    </li>
+                    @if (((Projects.Models.User)Session[SessionNames.User]).Role == UserRole.Admin)
+                    {
+                        <li>
+                            @Html.RouteLink("Employees", new { controller = "Employee", action = "index" }, new { @class = "hover" })
+                        </li>
+                        <li>
+                            @Html.RouteLink("Projects", new { controller = "Projects", action = "index" }, new { @class = "hover" })
+                        </li>
+
+                    }
+
+
+                    <li>
+                        @Html.RouteLink("Tasks", new { controller = "Tasks", action = "index" }, new { @class = "hover" })
+                                </li>
             @if (((Projects.Models.User)Session[SessionNames.User]).Role == UserRole.Admin)
             {
-            <li>
-                @Html.RouteLink("Employees", new { controller = "Employee", action = "index" }, new { @class = "hover" })
-            </li>
-            <li>
-                @Html.RouteLink("Projects", new { controller = "Projects", action = "index" }, new { @class = "hover" })
-            </li>
-            <li>
-                @Html.RouteLink("Report", new { controller = "Projects", action = "index" }, new { @class = "hover" })
-            </li>
+                                <li>
+                                    @Html.RouteLink("Reports", new { controller = "Reports", action = "index" }, new { @class = "hover" })
+                                </li>
             }
-            
-          
-            <li>
-                @Html.RouteLink("Tasks", new { controller = "Tasks", action = "index" }, new { @class = "hover" })
+                                <li>
+                        @Html.RouteLink("Team", new { controller = "contact", action = "index" }, new { @class = "hover" })
+                    </li>
+                </ul>
             </li>
-            <li>
-                @Html.RouteLink("Team", new { controller = "contact", action = "index" }, new { @class = "hover" })
-            </li>
+            <li class="pull-right logoff menu-toggle hidden-lg hidden-md" ><i class="fa fa-bars"></i></li>
             <li class="pull-right logoff "> <a href="@Url.RouteUrl("Default", new { controller = "Dashboard", action = "Logoff" })"><i class="fa fa-power-off"></i> </a></li>
-            <li class="pull-right logoff"><a href="@Url.RouteUrl("Default", new { controller = "Dashboard", action = "Logoff" })" class="relative notify"><i class="notify-number">5</i> <i class="fa fa-globe"></i>    </a></li>
+            <li class="pull-right logoff"><a href="@Url.RouteUrl("Default", new { controller = "Notification", action = "index" })" class="relative notify"><i class="notify-number ">@DB.GetNotificationCount((Session[SessionNames.User] as User).CompanyId)</i> <i class="fa fa-globe"></i>    </a></li>
         @if (((Projects.Models.User)Session[SessionNames.User]).Role == UserRole.Admin)
         {
             <li class="pull-right logoff"><a href="@Url.RouteUrl("Default", new { controller = "Company", action = "index" })" class=""><i class="fa fa-building-o"></i> </a></li>

@@ -1,8 +1,4 @@
 ﻿using Projects.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Projects.Controllers
@@ -54,6 +50,18 @@ namespace Projects.Controllers
         public ActionResult archive(int id)
         {
             DB.SetProjectArchive(id);
+            return RedirectToAction("index");
+        }
+
+        public ActionResult Delete(int id)
+        {
+            if (!IsLogin()) return RedirectToAction("Index", "Login");
+            if (((Models.User)Session[SessionNames.User]).Role == UserRole.Employee) return RedirectToAction("index", "Dashboard");
+
+            DB.ExecuteNonQuery($@"delete from project where id = {id};
+                                 delete from task_users where task_id in (select id from task where project_id = {id});
+                                 delete from task where project_id = {id}  ");
+
             return RedirectToAction("index");
         }
 

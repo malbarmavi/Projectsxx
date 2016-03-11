@@ -1,17 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Projects.Models;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-
 namespace Projects.Controllers
 {
-    public class NotificationController : Controller
+    public class NotificationController : Projects.AdvancedController
     {
         // GET: Notification
         public ActionResult Index()
         {
-            return View();
+            if (!IsLogin()) return RedirectToAction("Index", "Login");
+
+            return View(DB.GetNotificationList((Session[SessionNames.User] as User).CompanyId).Where(n => n.Message?.Length > 0).ToList());
+
         }
     }
 }

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace Projects
+﻿namespace Projects
 {
     public enum TaskState : int
     {
@@ -11,6 +6,5 @@ namespace Projects
         InProcess = 1,
         Faile = 2,
         Success = 3
-
     }
 }

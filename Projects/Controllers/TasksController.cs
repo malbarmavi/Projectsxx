@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Projects.Models;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using Projects.Models;
 
 namespace Projects.Controllers
 {
@@ -14,7 +11,9 @@ namespace Projects.Controllers
         public ActionResult Index()
         {
             if (!IsLogin()) return RedirectToAction("index", "dashboard");
-            return View(DB.GetTaskInfo(((Models.User)Session[SessionNames.User]).Id.ToString()));
+            return View(DB.GetTaskInfo((Models.User)Session[SessionNames.User]).GroupBy(
+                t => t.ProjectName,
+                (key, e) => new TasksCollection { ProjectName = key, TasksList = e.ToList<TaskInfo>() }).ToList());
         }
 
         [HttpGet]
@@ -24,6 +23,7 @@ namespace Projects.Controllers
 
             if (!IsLogin()) return RedirectToAction("index", "dashboard");
             var projectTask = new ProjectTask();
+
             return View(projectTask);
         }
 

@@ -90,7 +90,7 @@ nav {
 }
     nav ul {
         padding :0;
-        position:fixed;
+   
         width:100%;
     }
 
@@ -129,6 +129,49 @@ nav {
     }
 
 
+    .menu { 
+        margin-top:-17px;
+        
+    }
+  
+
+@media  (max-width: 991px) {
+.menu { 
+    display:none;
+}
+  .menu.overlay { 
+
+            position: absolute;
+    background: rgba(0,0,0,0.8);
+    top: 0;
+    left: 0;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    z-index: 999999999;
+    padding: 40px;
+    display:block;
+    
+    }
+
+  .menu.overlay li 
+  { 
+          display: block;
+   font-size:24pt !important;
+    font-weight: bold;
+    opacity: 1;
+    color: #fff;
+  }
+  .menu.overlay li  a { 
+      color:#fff;
+  }
+    .menu.overlay li a:hover {
+    
+       color:#1abc9c;
+    }
+}
+
 
 .logoff {
     line-height: 34px;
@@ -148,7 +191,7 @@ nav {
     display:none;
 }
 
-thead , thead td{ 
+.table.colorfull thead ,.table.colorfull thead td{ 
     font-weight:bold;
         color: #34495e !important;
     background: #1abc9c !important;
@@ -163,12 +206,17 @@ thead , thead td{
     border: 0 solid #ddd;
 }
 
-table td {
+.colorfull{
+
+}
+
+
+table.colorfull td {
     background: #34495e;
     color: #1abc9c;
          
 }
-.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td{
+.table.colorfull > thead > tr > th, .table.colorfull > tbody > tr > th, .table.colorfull > tfoot > tr > th, .table.colorfull > thead > tr > td, .table > tbody > tr > td, .table.colorfull > tfoot > tr > td{
  border-top: 0 solid #ddd;
 }
 table{
@@ -182,10 +230,14 @@ table{
     position:relative;
 }
 
-
-.project-expand-btn { 
+.project-delete-btn { 
     position:absolute;
     right:35px;
+    top:-10px;
+}
+.project-expand-btn { 
+    position:absolute;
+    right:70px;
     top:-10px;
 }
 .project-task-btn {
@@ -258,3 +310,43 @@ text-align:center;
 .archive-project { 
         padding: 48px 0;
 }
+
+
+.info-box{
+    font-weight: normal;
+   cursor:pointer;
+    color: #fff;
+    padding: 5px;
+    width: 50px;
+    display: inline-block;
+    text-align: center;
+    font-size: 8pt;
+    border-radius: 3px;
+    
+}
+    .info-box.all-task {
+        color: #b0b0b0;
+         background: #fff;
+ border: 1px solid #d7d7d7;
+    }
+
+.info-box.normal-task { 
+ background: #3498DB;
+ border: 1px solid #226EA0;
+}
+
+    .info-box.high-task {
+        background: #E74C3C;
+        border: 1px solid #9D3429;
+    }
+.info-box.low-task { 
+    background: #F1C40F;
+    border: 1px solid #E59415;
+
+}
+
+.menu-toggle { 
+    cursor:pointer;
+}
+
+.
